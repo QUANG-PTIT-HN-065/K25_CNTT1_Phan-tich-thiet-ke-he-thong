@@ -1,0 +1,115 @@
+<mxfile host="app.diagrams.net" modified="2026-09-22T00:00:00.000Z" agent="Claude" version="24.0.0" type="device">
+  <diagram name="Dat Xe - Sequence Diagram" id="dat-xe-sequence">
+    <mxGraphModel dx="1400" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ===================== HEADER BOXES (Actors / Objects) ===================== -->
+        <mxCell id="kh_head" value="Khách hàng" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="40" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="app_head" value="App Điều Phối" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="40" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="tx_head" value="Điện thoại Tài xế" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="40" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="trip_head" value="Chuyến Đi&#10;(Trip)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="840" y="300" width="140" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== LIFELINES (dashed vertical lines) ===================== -->
+        <mxCell id="kh_line" style="endArrow=none;dashed=1;html=1;strokeColor=#6c8ebf;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="100" y="80" as="sourcePoint" />
+            <mxPoint x="100" y="680" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="app_line" style="endArrow=none;dashed=1;html=1;strokeColor=#82b366;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="370" y="80" as="sourcePoint" />
+            <mxPoint x="370" y="680" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tx_line" style="endArrow=none;dashed=1;html=1;strokeColor=#d79b00;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="650" y="80" as="sourcePoint" />
+            <mxPoint x="650" y="680" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Trip lifeline: BAT DAU dung tai diem mui ten Create tro toi (khong keo dai tu dau so do) -->
+        <mxCell id="trip_line" style="endArrow=none;dashed=1;html=1;strokeColor=#b85450;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="910" y="340" as="sourcePoint" />
+            <mxPoint x="910" y="560" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ===================== COMBINED FRAGMENT (alt) ===================== -->
+        <mxCell id="altFrame" value="alt" style="shape=umlFrame;whiteSpace=wrap;html=1;width=180;height=40;fillColor=none;verticalAlign=top;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="290" width="910" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="altGuard1" value="[Tài xế đồng ý]" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="250" y="290" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="altDivider" style="endArrow=none;dashed=1;html=1;strokeColor=#000000;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="60" y="430" as="sourcePoint" />
+            <mxPoint x="970" y="430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="altGuard2" value="else [Tài xế từ chối]" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="80" y="435" width="200" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== MESSAGES ===================== -->
+        <!-- 1. KH -> App : taoDonHang() (SYNC - net lien, dau mui ten dac) -->
+        <mxCell id="msg1" value="1: taoDonHang()" style="endArrow=block;html=1;endFill=1;fontSize=12;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="100" y="140" as="sourcePoint" />
+            <mxPoint x="370" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 2. App -> Tai xe : yeuCauNhanDon() (ASYNC - net lien, dau mui ten ho) -->
+        <mxCell id="msg2" value="2: yeuCauNhanDon()" style="endArrow=open;html=1;endFill=0;fontSize=12;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="370" y="200" as="sourcePoint" />
+            <mxPoint x="650" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 3. Tai xe -> App : phanHoi (ASYNC doc lap - net lien, dau mui ten ho) -->
+        <mxCell id="msg3" value="3: phanHoi(đồng ý / từ chối)" style="endArrow=open;html=1;endFill=0;fontSize=12;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="650" y="260" as="sourcePoint" />
+            <mxPoint x="370" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 4. App -> Trip : create() (CREATE - net lien tro thang vao hcn doi tuong moi) -->
+        <mxCell id="msg4" value="4: «create» Trip()" style="endArrow=open;html=1;endFill=0;dashed=0;fontSize=12;strokeWidth=2;fontStyle=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="370" y="360" as="sourcePoint" />
+            <mxPoint x="840" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 5. App -> KH : ket qua cuoi cung (RETURN - net dut, dau mui ten ho) - NAM NGOAI KHOI ALT -->
+        <mxCell id="msg5" value="5: ketQua(Đã tìm thấy xe / Không tìm được tài xế)" style="endArrow=open;html=1;endFill=0;dashed=1;fontSize=12;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="370" y="620" as="sourcePoint" />
+            <mxPoint x="100" y="620" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Legend -->
+        <mxCell id="legend" value="Chú thích: Sync = nét liền, đầu đặc  |  Async = nét liền, đầu hở  |  Return = nét đứt, đầu hở  |  Create = nét liền trỏ vào object mới" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#666666;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="20" y="650" width="900" height="20" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
